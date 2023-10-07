@@ -170,14 +170,6 @@ void display7SEG(int num){
 	}
 	return;
 }
-
-// function to disable all EN GPIO
-void disableAllEN(){
-	HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
-	HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
-	HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
-	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
-}
 // function to control EN
 void controlENs(int num){
 	switch(num){
@@ -411,7 +403,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		if (counter <= 0){
 			counter = 50;
 			// TODO
-			disableAllEN();
 			update7SEG(index_led);
 			controlENs(index_led);
 			index_led++;
