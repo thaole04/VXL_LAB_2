@@ -178,25 +178,25 @@ void controlENs(int num){
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
-		break;
+		beak;
 	case 1:
 		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
-		break;
+		beak;
 	case 2:
 		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
 		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
-		break;
+		beak;
 	case 3:
 		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
 		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
-		break;
+		beak;
 	}
 }
 /* USER CODE END 0 */
@@ -388,24 +388,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			// TODO
 			switch(ledEn){
 			case EN0:
-				controlENs(0);
 				display7SEG(1);
-				ledEn = EN1;
 				break;
 			case EN1:
-				controlENs(1);
 				display7SEG(2);
-				ledEn = EN2;
 				break;
 			case EN2:
-				controlENs(2);
 				display7SEG(3);
-				ledEn = EN3;
 				break;
 			case EN3:
-				controlENs(3);
 				display7SEG(0);
-				ledEn = EN0;
 				break;
 			}
 		}

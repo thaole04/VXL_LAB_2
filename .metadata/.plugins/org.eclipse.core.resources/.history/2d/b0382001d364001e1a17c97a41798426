@@ -390,22 +390,18 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			case EN0:
 				controlENs(0);
 				display7SEG(1);
-				ledEn = EN1;
 				break;
 			case EN1:
 				controlENs(1);
 				display7SEG(2);
-				ledEn = EN2;
 				break;
 			case EN2:
 				controlENs(2);
 				display7SEG(3);
-				ledEn = EN3;
 				break;
 			case EN3:
 				controlENs(3);
 				display7SEG(0);
-				ledEn = EN0;
 				break;
 			}
 		}
