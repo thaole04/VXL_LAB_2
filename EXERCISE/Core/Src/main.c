@@ -222,17 +222,23 @@ void update7SEG(int index){
 	switch(index){
 	case 0:
 		display7SEG(led_buffer[0]);
+		controlENs(0);
 		break;
 	case 1:
 		display7SEG(led_buffer[1]);
+		controlENs(1);
 		break;
 	case 2:
 		display7SEG(led_buffer[2]);
+		controlENs(2);
 		break;
 	case 3:
 		display7SEG(led_buffer[3]);
+		controlENs(3);
 		break;
 	default:
+		display7SEG(led_buffer[0]);
+		controlENs(0);
 		break;
 	}
 }
@@ -240,10 +246,10 @@ void update7SEG(int index){
 // Exercise 5
 int hour = 15, minute = 0, second = 15;
 void updateClockBuffer() {
-	led_buffer[0] = hour % 10;
-	led_buffer[1] = hour / 10;
-	led_buffer[2] = minute % 10;
-	led_buffer[3] = minute / 10;
+	led_buffer[0] = minute / 10;
+	led_buffer[1] = minute % 10;
+	led_buffer[2] = second / 10;
+	led_buffer[3] = second % 10;
 }
 /* USER CODE END 0 */
 
@@ -283,10 +289,16 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   setTimer0(100);
+//  int status = 0;
+  setTimer1(25);
+  updateClockBuffer();
+  disableAllEN();
   while (1)
   {
 	  if (timer0_flag == 1){
+//	  if (status == 1){
 		  setTimer0(100);
+//		  status = 0;
 		  // TODO
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		  second++;
@@ -302,6 +314,17 @@ int main(void)
 			  hour=0;
 		  }
 		  updateClockBuffer();
+	  }
+	  if (timer1_flag == 1){
+		  setTimer1(25);
+		  // TODO
+		  disableAllEN();
+		  update7SEG(index_led);
+		  index_led++;
+		  if (index_led == MAX_LED) {
+			  index_led = 0;
+//			  status = 1;
+		  }
 	  }
     /* USER CODE END WHILE */
 
@@ -432,24 +455,8 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-//int counter = 25;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	timerRun();
-//	if (counter > 0) {
-//		counter--;
-//		if (counter <= 0){
-//			counter = 50;
-//			// TODO
-//			disableAllEN();
-//			update7SEG(index_led);
-//			controlENs(index_led);
-//			index_led++;
-//			if (index_led == MAX_LED) {
-//				index_led = 0;
-//				HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-//			}
-//		}
-//	}
 }
 /* USER CODE END 4 */
 
