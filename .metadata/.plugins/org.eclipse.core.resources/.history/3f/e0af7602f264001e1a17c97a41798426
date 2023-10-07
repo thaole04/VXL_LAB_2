@@ -251,13 +251,6 @@ void updateClockBuffer() {
 	led_buffer[2] = minute / 10;
 	led_buffer[3] = minute % 10;
 }
-// test with minute and second
-//void updateClockBuffer() {
-//	led_buffer[0] = minute / 10;
-//	led_buffer[1] = minute % 10;
-//	led_buffer[2] = second / 10;
-//	led_buffer[3] = second % 10;
-//}
 /* USER CODE END 0 */
 
 /**
@@ -305,7 +298,6 @@ int main(void)
 		  status = 0;
 		  // TODO
 		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 		  second++;
 		  if (second >= 60){
 			  second = 0;
