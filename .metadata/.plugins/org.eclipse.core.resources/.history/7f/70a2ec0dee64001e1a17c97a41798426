@@ -286,9 +286,6 @@ int main(void)
   while (1)
   {
 	  if (timer0_flag == 1){
-		  setTimer0(100);
-		  // TODO
-		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 		  second++;
 		  if (second >= 60){
 			  second = 0;
@@ -301,7 +298,7 @@ int main(void)
 		  if (hour >= 24){
 			  hour=0;
 		  }
-		  updateClockBuffer();
+	  updateClockBuffer();
 	  }
     /* USER CODE END WHILE */
 
