@@ -238,7 +238,6 @@ void update7SEG(int index){
 }
 
 // Exercise 5
-int hour = 15, minute = 0, second = 15;
 void updateClockBuffer() {
 	led_buffer[0] = hour % 10;
 	led_buffer[1] = hour / 10;
@@ -282,7 +281,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
+  int hour = 15, minute = 0, second = 15;
   while (1)
   {
 	  second++;
@@ -428,23 +427,23 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-//int counter = 25;
+int counter = 25;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-//	if (counter > 0) {
-//		counter--;
-//		if (counter <= 0){
-//			counter = 50;
-//			// TODO
-//			disableAllEN();
-//			update7SEG(index_led);
-//			controlENs(index_led);
-//			index_led++;
-//			if (index_led == MAX_LED) {
-//				index_led = 0;
-//				HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-//			}
-//		}
-//	}
+	if (counter > 0) {
+		counter--;
+		if (counter <= 0){
+			counter = 50;
+			// TODO
+			disableAllEN();
+			update7SEG(index_led);
+			controlENs(index_led);
+			index_led++;
+			if (index_led == MAX_LED) {
+				index_led = 0;
+				HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+			}
+		}
+	}
 }
 /* USER CODE END 4 */
 

@@ -238,7 +238,6 @@ void update7SEG(int index){
 }
 
 // Exercise 5
-int hour = 15, minute = 0, second = 15;
 void updateClockBuffer() {
 	led_buffer[0] = hour % 10;
 	led_buffer[1] = hour / 10;
@@ -282,7 +281,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
+  int hour = 15, minute = 0, second = 15;
   while (1)
   {
 	  second++;
