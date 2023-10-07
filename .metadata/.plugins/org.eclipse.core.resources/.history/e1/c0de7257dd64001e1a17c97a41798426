@@ -410,10 +410,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			}
 			counter = 50;
 			// TODO
-			controlENs(index_led);
 			update7SEG(index_led);
 			index_led++;
 			if (index_led == MAX_LED) {
+				for (int i =0; i < MAX_LED; i++){
+					led_buffer[i]++;
+					if (led_buffer[i] > 9) {
+						led_buffer[i] = 0;
+					}
+				}
 				index_led = 0;
 			}
 		}
