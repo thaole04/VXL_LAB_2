@@ -434,15 +434,13 @@ void updateLEDMatrix(int index){
 // function display led_matrix
 void displayLedMatrix() {
 	if (index_led_matrix < 8) {
-		// disable all led in led matrix before scan led
 		disableAllLEDMatrix();
-		// active Row follows index_led_matrix
+		// active Row follows index_row
 		activeRow(index_led_matrix);
 		// control Led index in Row follows matrix_buffer
 		updateLEDMatrix(index_led_matrix);
 	}
 	index_led_matrix++;
-	// check index of led, if it exceed MAX_LED_MATRIX, reset it
 	if (index_led_matrix >= 8) {
 		index_led_matrix = 0;
 	}

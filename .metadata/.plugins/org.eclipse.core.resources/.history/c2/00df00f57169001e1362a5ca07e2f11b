@@ -442,7 +442,6 @@ void displayLedMatrix() {
 		updateLEDMatrix(index_led_matrix);
 	}
 	index_led_matrix++;
-	// check index of led, if it exceed MAX_LED_MATRIX, reset it
 	if (index_led_matrix >= 8) {
 		index_led_matrix = 0;
 	}

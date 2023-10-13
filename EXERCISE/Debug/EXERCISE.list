@@ -534,9 +534,10 @@ void displayLedMatrix() {
  8000482:	681b      	ldr	r3, [r3, #0]
  8000484:	2b07      	cmp	r3, #7
  8000486:	dc0b      	bgt.n	80004a0 <displayLedMatrix+0x24>
+		// disable all led in led matrix before scan led
 		disableAllLEDMatrix();
  8000488:	f7ff fe60 	bl	800014c <disableAllLEDMatrix>
-		// active Row follows index_row
+		// active Row follows index_led_matrix
 		activeRow(index_led_matrix);
  800048c:	4b0b      	ldr	r3, [pc, #44]	; (80004bc <displayLedMatrix+0x40>)
  800048e:	681b      	ldr	r3, [r3, #0]
@@ -555,6 +556,7 @@ void displayLedMatrix() {
  80004a4:	3301      	adds	r3, #1
  80004a6:	4a05      	ldr	r2, [pc, #20]	; (80004bc <displayLedMatrix+0x40>)
  80004a8:	6013      	str	r3, [r2, #0]
+	// check index of led, if it exceed MAX_LED_MATRIX, reset it
 	if (index_led_matrix >= 8) {
  80004aa:	4b04      	ldr	r3, [pc, #16]	; (80004bc <displayLedMatrix+0x40>)
  80004ac:	681b      	ldr	r3, [r3, #0]
