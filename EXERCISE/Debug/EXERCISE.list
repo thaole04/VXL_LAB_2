@@ -426,7 +426,7 @@ void controlRowLed(uint8_t matrix_buffer){
 	...
 
 080003d4 <updateLEDMatrix>:
-// function update maxtrix_buffer
+// function using maxtrix_buffer to control led in a Row
 void updateLEDMatrix(int index){
  80003d4:	b580      	push	{r7, lr}
  80003d6:	b082      	sub	sp, #8

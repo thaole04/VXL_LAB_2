@@ -399,7 +399,7 @@ void controlRowLed(uint8_t matrix_buffer){
 		}
 	}
 }
-// function using maxtrix_buffer to control led in a Row
+// function update maxtrix_buffer
 void updateLEDMatrix(int index){
 	switch(index){
 	case 0:
