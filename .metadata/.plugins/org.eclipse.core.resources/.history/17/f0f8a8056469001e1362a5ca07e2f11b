@@ -23,7 +23,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "software_timer.h"
-#include <stdbool.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -390,59 +389,43 @@ void activeCol(int index){
 //
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
-uint8_t matrix_buffer[8] = {0x18, 0x3C, 0x24, 0x24, 0x3C, 0x3C, 0x24, 0x24};
-void controlRowLed(uint8_t matrix_buffer){
-	for (int i =0 ;i <MAX_LED_MATRIX; i++){
-		bool statusLed = (matrix_buffer >> (7 - i)) & 1;
-		if (statusLed == 1) {
-			activeCol(i);
-		}
-	}
-}
+uint8_t matrix_buffer[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
+uint8_t A[8][8] = {
+		{0, 0, 0, 1, 1, 0, 0, 0},
+		{0, 0, 1, 1, 1, 1, 0, 0},
+		{0, 0, 1, 0, 0, 1, 0, 0},
+		{0, 0, 1, 0, 0, 1, 0, 0},
+		{0, 0, 1, 1, 1, 1, 0, 0},
+		{0, 0, 1, 1, 1, 1, 0, 0},
+		{0, 0, 1, 0, 0, 1, 0, 0},
+		{0, 0, 1, 0, 0, 1, 0, 0},
+};
 // function update maxtrix_buffer
-void updateLEDMatrix(int index){
-	switch(index){
-	case 0:
-		controlRowLed(matrix_buffer[0]);
-		break;
-	case 1:
-		controlRowLed(matrix_buffer[1]);
-		break;
-	case 2:
-		controlRowLed(matrix_buffer[2]);
-		break;
-	case 3:
-		controlRowLed(matrix_buffer[3]);
-		break;
-	case 4:
-		controlRowLed(matrix_buffer[4]);
-		break;
-	case 5:
-		controlRowLed(matrix_buffer[5]);
-		break;
-	case 6:
-		controlRowLed(matrix_buffer[6]);
-		break;
-	case 7:
-		controlRowLed(matrix_buffer[7]);
-		break;
-	default:
-		disableAllLEDMatrix();
-		break;
+void updateLEDMatrix(int index, uint8_t array[][8]){
+	matrix_buffer[index_led_matrix] = array[index][index_led_matrix];
+	index_led_matrix++;
+	if (index_led_matrix >= 8){
+		index_led_matrix = 0;
 	}
 }
 // function display led_matrix
+int index_row = 0;
 void displayLedMatrix() {
-	if (index_led_matrix < 8) {
+	if (index_row < 8) {
 		disableAllLEDMatrix();
 		// active Row follows index_row
-		activeRow(index_led_matrix);
+		activeRow(index_row);
 		// control Led index in Row follows matrix_buffer
-		updateLEDMatrix(index_led_matrix);
+		for (int index_col = 0; index_col < MAX_LED_MATRIX; index_col++){
+			updateLEDMatrix(index_row, A);
+			if (matrix_buffer[index_col] == 1){
+				activeCol(index_col);
+			}
+		}
 	}
-	index_led_matrix++;
-	if (index_led_matrix >= 8) {
-		index_led_matrix = 0;
+	index_row++;
+	if (index_row >= 8) {
+		index_row = 0;
 	}
 }
 /* USER CODE END 0 */

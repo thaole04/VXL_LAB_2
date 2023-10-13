@@ -390,7 +390,17 @@ void activeCol(int index){
 //
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
-uint8_t matrix_buffer[8] = {0x18, 0x3C, 0x24, 0x24, 0x3C, 0x3C, 0x24, 0x24};
+uint8_t matrix_buffer[8] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
+uint8_t A[8][8] = {
+		{0, 0, 0, 1, 1, 0, 0, 0},
+		{0, 0, 1, 1, 1, 1, 0, 0},
+		{0, 0, 1, 0, 0, 1, 0, 0},
+		{0, 0, 1, 0, 0, 1, 0, 0},
+		{0, 0, 1, 1, 1, 1, 0, 0},
+		{0, 0, 1, 1, 1, 1, 0, 0},
+		{0, 0, 1, 0, 0, 1, 0, 0},
+		{0, 0, 1, 0, 0, 1, 0, 0},
+};
 void controlRowLed(uint8_t matrix_buffer){
 	for (int i =0 ;i <MAX_LED_MATRIX; i++){
 		bool statusLed = (matrix_buffer >> (7 - i)) & 1;
@@ -398,6 +408,7 @@ void controlRowLed(uint8_t matrix_buffer){
 			activeCol(i);
 		}
 	}
+
 }
 // function update maxtrix_buffer
 void updateLEDMatrix(int index){
