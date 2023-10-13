@@ -391,6 +391,16 @@ void activeCol(int index){
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
 // Buffer Animation
+//uint8_t arr[][] = {
+//		{0, 0, 0, 1, 1, 0, 0, 0},
+//		{0, 0, 1, 1, 1, 1, 0, 0},
+//		{0, 1, 1, 0, 0, 1, 1, 0},
+//		{0, 1, 1, 0, 0, 1, 1, 0},
+//		{0, 1, 1, 0, 0, 1, 1, 0},
+//		{0, 1, 1, 0, 0, 1, 1, 0},
+//		{0, 0, 1, 1, 1, 1, 0, 0},
+//		{0, 0, 0, 1, 1, 0, 0, 0},
+//};
 uint8_t nameThao[4][8] = {
 		{0x7E, 0x7E, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18},
 		{0x66, 0x66, 0x66, 0x7E, 0x7E, 0x66, 0x66, 0x66},
@@ -405,7 +415,7 @@ void updateBuffer(){
 		matrix_buffer[i] = nameThao[countBuffer][i];
 	}
 	countBuffer++;
-	if (countBuffer >= 4) {
+	if (countBuffer >= 3) {
 		countBuffer = 0;
 	}
 }
